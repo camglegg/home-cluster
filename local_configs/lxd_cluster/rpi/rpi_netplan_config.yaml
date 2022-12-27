@@ -1,0 +1,13 @@
+# This netplan config is for the rpi, which has a single NIC
+# This creates br0 for use in LXD
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+        dhcp4: true
+  bridges:
+    br0:
+      dhcp4: true
+      interfaces:
+              - eth0

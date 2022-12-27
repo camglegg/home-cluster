@@ -1,0 +1,13 @@
+# This netplan config is for the macminii7, which has a single NIC
+# This creates br0 for use in LXD
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp3s0f0:
+      dhcp4: true
+  bridges:
+    br0:
+      dhcp4: true
+      interfaces:
+              - enp3s0f0

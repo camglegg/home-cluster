@@ -1,0 +1,39 @@
+cluster:
+  server_name: rpi
+  enabled: true
+  member_config:
+  - entity: storage-pool
+    name: local
+    key: size
+    value: ""
+    description: '"size" property for storage pool "local"'
+  - entity: storage-pool
+    name: local
+    key: source
+    value: ""
+    description: '"source" property for storage pool "local"'
+  - entity: storage-pool
+    name: local
+    key: zfs.pool_name
+    value: ""
+    description: '"zfs.pool_name" property for storage pool "local"'
+  cluster_address: 192.168.0.67:8443
+  cluster_certificate: |
+    -----BEGIN CERTIFICATE-----
+    MIICDTCCAZOgAwIBAgIRAL5zpMKWpPDohEEEYXroBHwwCgYIKoZIzj0EAwMwNzEc
+    MBoGA1UEChMTbGludXhjb250YWluZXJzLm9yZzEXMBUGA1UEAwwOcm9vdEBtYWNt
+    aW5paTcwHhcNMjIxMjA1MDM1NTI0WhcNMzIxMjAyMDM1NTI0WjA3MRwwGgYDVQQK
+    ExNsaW51eGNvbnRhaW5lcnMub3JnMRcwFQYDVQQDDA5yb290QG1hY21pbmlpNzB2
+    MBAGByqGSM49AgEGBSuBBAAiA2IABEzHe7qxJ/kVxa/BrNabVBX59ive1LvPMd6y
+    psI+wAg/j4Yaxe+YSAydxocIjYIwyFJG8B8kyCFrHysUYwptk+gghNM3d9/Ggosj
+    Ph7fZa2+QdDYVglObimeLtxOknwxoaNjMGEwDgYDVR0PAQH/BAQDAgWgMBMGA1Ud
+    JQQMMAoGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAwLAYDVR0RBCUwI4IJbWFjbWlu
+    aWk3hwR/AAABhxAAAAAAAAAAAAAAAAAAAAABMAoGCCqGSM49BAMDA2gAMGUCMQDI
+    4qNG9x6J89+YWhva4ONygoYre8/Ob3njFgpZ5KGSkwW7kkhYWDlRgRuRnHEQW8MC
+    MCH9geWS7smIKFle/e1njUuaun6sqCt1Izp7P/zuMaQDEPyrvvffkjV58l+YYnsB
+    dw==
+    -----END CERTIFICATE-----
+  server_address: 192.168.0.34:8443
+  cluster_password: ""
+  cluster_certificate_path: ""
+  cluster_token: ""

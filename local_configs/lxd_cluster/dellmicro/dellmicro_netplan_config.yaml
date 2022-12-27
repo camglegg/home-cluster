@@ -1,0 +1,13 @@
+# This netplan config is for the dellmicro, which has a single NIC
+# This creates br0 for use in LXD
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s31f6:
+        dhcp4: true
+  bridges:
+    br0:
+      dhcp4: true
+      interfaces:
+              - enp0s31f6

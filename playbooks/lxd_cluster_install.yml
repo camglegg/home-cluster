@@ -1,0 +1,16 @@
+# This playbook runs the full set of tasks written in other playbooks to install and configure LXD on the cluster.
+# The only thing left to do is deploy the containers and test that the whole cluster comes back...
+- hosts: all
+  tasks: 
+    -name: Apt Update
+      ansible.builtin.include_tasks: 
+        file: apt_update.yml
+    -name: Configure Bridge
+      ansible.builtin.include_tasks: 
+        file: config_bridge.yml
+    -name: Install LXD
+      ansible.builtin.include_tasks: 
+        file: install_lxd.yml
+    -name: Configure LXD
+      ansible.builtin.include_tasks:
+        file: config_lxd.yml

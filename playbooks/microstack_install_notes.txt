@@ -1,0 +1,8 @@
+# On Pi need the --classic flag for isntall
+# Nevermind... Might not work:
+This revision of snap "microstack" was published using classic confinement and thus
+       may perform arbitrary system changes outside of the security sandbox that snaps are
+       usually confined to, which may put your system at risk.
+
+       If you understand and want to proceed repeat the command including --classic.
+

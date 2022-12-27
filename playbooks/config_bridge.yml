@@ -1,0 +1,54 @@
+# This playbook is to setuo the Bridge config for the lxd_Cluster
+- hosts: macminii7
+  become: yes
+  tasks:
+    - name: Copy a new "netplan.yaml" onto macminii7, backing up the original if it differs from the copied version
+      ansible.builtin.copy:
+        src: /home/cameronglegg/Documents/Ansible/local_configs/lxd_cluster/macminii7/macminii7_netplan_config.yaml
+        dest: /etc/netplan/macminii7_netplan_config.yaml
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+
+- hosts: macminii5
+  become: yes
+  tasks:
+    - name: Copy a new "netplan.yaml" onto macminii5, backing up the original if it differs from the copied version
+      ansible.builtin.copy:
+        src: /home/cameronglegg/Documents/Ansible/local_configs/lxd_cluster/macminii5/macminii5_netplan_config.yaml
+        dest: /etc/netplan/macminii5_netplan_config.yaml
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+
+- hosts: rpi
+  become: yes
+  tasks:
+    - name: Copy a new "netplan.yaml" onto rpi, backing up the original if it differs from the copied version
+      ansible.builtin.copy:
+        src: /home/cameronglegg/Documents/Ansible/local_configs/lxd_cluster/rpi/rpi_netplan_config.yaml
+        dest: /etc/netplan/rpi_netplan_config.yaml
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+
+- hosts: dellmicro
+  become: yes
+  tasks:
+    - name: Copy a new "netplan.yaml" onto dellmicro, backing up the original if it differs from the copied version
+      ansible.builtin.copy:
+        src: /home/cameronglegg/Documents/Ansible/local_configs/lxd_cluster/dellmicro/dellmicro_netplan_config.yaml
+        dest: /etc/netplan/dellmicro_netplan_config.yaml
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+
+- hosts: all
+  become: yes
+  tasks:
+    - name: Apply the new netplan config
+      ansible.builtin.command: netplan apply

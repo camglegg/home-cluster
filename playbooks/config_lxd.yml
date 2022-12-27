@@ -1,0 +1,66 @@
+# Need to add lxd config files to each host. Files are found at Documents/Ansible/local_config/lxd_cluster/...
+# We have the preseed files for the lxd cluster, but we need to add them to the hosts
+# The command we need to run is "lxd init --preseed < /path/to/preseed.yaml"
+- hosts: macminii7
+  become: yes
+  tasks:
+    - name: Copy a new "preseed.yaml" onto macminii7, backing up the original if it differs from the copied version
+      ansible.builtin.copy:
+        src: /home/cameronglegg/Documents/Ansible/local_configs/lxd_cluster/macminii7/macminii7_init_preseed.yaml
+        dest: /home/ubuntu/macminii7_preseed_config.yaml
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+
+- hosts: macminii5
+  become: yes
+  tasks:
+    - name: Copy a new "preseed.yaml" onto macminii5, backing up the original if it differs from the copied version
+      ansible.builtin.copy:
+        src: /home/cameronglegg/Documents/Ansible/local_configs/lxd_cluster/macminii5/macminii5_init_preseed.yaml
+        dest: /home/ubuntu/macminii5_preseed_config.yaml
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+
+- hosts: rpi
+  become: yes
+  tasks:
+    - name: Copy a new "preseed.yaml" onto rpi, backing up the original if it differs from the copied version
+      ansible.builtin.copy:
+        src: /home/cameronglegg/Documents/Ansible/local_configs/lxd_cluster/rpi/rpi_init_preseed.yaml
+        dest: /home/ubuntu/rpi_preseed_config.yaml
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+
+- hosts: macminii7
+  become: yes
+  tasks:
+    - name: Run the preseed config on macmini7
+      ansible.builtin.command: lxd init --preseed < /home/ubuntu/macminii7_preseed_config.yaml
+
+- hosts: macminii5
+  become: yes
+  tasks:
+    - name: Run the preseed config on macmini5
+      ansible.builtin.command: lxd init --preseed < /home/ubuntu/macminii5_preseed_config.yaml
+
+- hosts: rpi
+  become: yes
+  tasks:
+    - name: Run the preseed config on rpi
+      ansible.builtin.command: lxd init --preseed < /home/ubuntu/rpi_preseed_config.yaml
+
+# this fail with this error:
+# Error: Failed to join cluster: Failed to update cluster trust: Failed to connect to target cluster node "192.168.0.67:8443": Get "https://192.168.0.67:8443/1.0": x509: certificate is valid for 127.0.0.1, ::1, not 192.168.0.67
+# Something about moving the certifcates around. I think I need to copy the certificates from the master to the other nodes.
+# This seems to explain the issue. Thanks @stgraber! https://github.com/lxc/lxd/issues/10286. Also here https://discuss.linuxcontainers.org/t/cluster-docs-missleading/10865
+
+# Ok We need to init the first node as a cluster master, then copy the certificates to the other nodes, then init the other nodes as cluster members.
+# The cert lives at "cat /var/snap/lxd/common/lxd/cluster.crt" on the master node. We need to copy this to the other nodes.
+
+# We need to load the certificate as a variable and pass it into the preseed file.

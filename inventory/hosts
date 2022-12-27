@@ -1,0 +1,21 @@
+# Description: Ansible inventory file for LXD cluster
+# Uncomment below for local
+# controlmachine ansible_connection=local
+
+[lxd_cluster]
+192.168.0.34
+192.168.0.67
+192.168.0.172
+192.168.0.81
+
+[macminii7]
+192.168.0.67
+
+[macminii5]
+192.168.0.172
+
+[rpi]
+192.168.0.34
+
+[dellmicro]
+192.168.0.81

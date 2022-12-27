@@ -1,0 +1,15 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Remove LXD
+      community.general.snap:
+        name:
+          - lxd
+        state: absent
+
+    - name: Install LXD
+      community.general.snap:
+        name:
+          - lxd
+        classic: true
+        channel: 5.8/stable

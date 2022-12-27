@@ -1,0 +1,21 @@
+all:
+  hosts:
+  children:
+    lxd_cluster:
+      ansible_hosts:
+        192.168.0.34
+        192.168.0.67
+        192.168.0.87
+      ansible_user: ubuntu
+    macminii7:
+      hosts:
+        192.168.0.67
+      user: ubuntu
+    macminii5:
+      hosts:
+        192.168.0.87
+      user: ubuntu
+    rpi:
+      hosts:
+        192.168.0.34
+      user: ubuntu

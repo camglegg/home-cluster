@@ -1,0 +1,107 @@
+# Install Chrome via apt.
+- name: Install Google Chrome
+  apt:
+    name: google-chrome-stable
+    state: present
+
+# Install Atom via apt.
+- name: Install Atom
+  apt:
+    name: atom
+    state: present
+
+# Install VS Code via apt.
+- name: Install VS Code
+  apt:
+    name: code
+    state: present
+
+# Install Postman via apt.
+- name: Install Postman
+  apt:
+    name: postman
+    state: present
+
+# Install Slack via apt.
+- name: Install Slack
+  apt:
+    name: slack
+    state: present
+
+# Install Zoom via apt.
+- name: Install Zoom
+  apt:
+    name: zoom
+    state: present
+
+# Install Discord via apt.
+- name: Install Discord
+  apt:
+    name: discord
+    state: present
+
+# Install Spotify via apt.
+- name: Install Spotify
+  apt:
+    name: spotify-client
+    state: present
+
+# Install Docker via apt.
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+
+# Install Git via apt.
+- name: Install Git
+  apt:
+    name: git
+    state: present
+
+# Install Docker via apt.
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+
+# Install Docker Compose via apt.
+- name: Install Docker Compose
+  apt:
+    name: docker-compose
+    state: present
+
+# Install Docker Machine via apt.
+- name: Install Docker Machine
+  apt:
+    name: docker-machine
+    state: present
+
+# Install Gnome Tweak Tool via apt.
+- name: Install Gnome Tweak Tool
+  apt:
+    name: gnome-tweak-tool
+    state: present
+
+# Install Gnome Shell Extensions via apt.
+- name: Install Gnome Shell Extensions
+  apt:
+    name: gnome-shell-extensions
+    state: present
+
+# Install Gnome Shell Extensions via apt.
+- name: Install Gnome Shell Extensions
+  apt:
+    name: gnome-shell-extensions
+    state: present
+
+# Install Gnome Shell Extensions via apt.
+- name: Install Gnome Shell Extensions
+  apt:
+    name: gnome-shell-extensions
+    state: present
+
+# Install Gnome Shell Extensions via apt.
+- name: Install Gnome Shell Extensions
+  apt:
+
+# Install 
