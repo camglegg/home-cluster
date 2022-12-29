@@ -1,0 +1,24 @@
+# This is an ansible playbook to add a profile to a lxd node:
+# Send a command to all hosts to create lxc profile for microk8s
+- hosts: all
+  become: yes
+  tasks:
+    - name: Create lxc profile for microk8s
+      shell: lxc profile create microk8s
+# Send a command to all hosts to download the profile wget https://raw.githubusercontent.com/ubuntu/microk8s/master/tests/lxc/microk8s-zfs.profile -O microk8s.profile
+- hosts: all
+  tasks:
+    - name: Download the profile
+      shell: wget https://raw.githubusercontent.com/ubuntu/microk8s/master/tests/lxc/microk8s-zfs.profile -O microk8s.profile
+# Send a command to all hosts to cat microk8s.profile | lxc profile edit microk8s
+- hosts: all
+  tasks:
+    - name: Copy the downloaded profile into the microk8s profile
+      shell: cat microk8s.profile | lxc profile edit microk8s
+# Send a command to all hosts to remove the downloaded file
+- hosts: all
+  tasks:
+    - name: Remove the downloaded file
+      shell: rm microk8s.profile
+
+# Creating the container lxc launch -p default -p microk8s ubuntu:20.04 microk8s. Have to add default and microk8s profiles to the container.
